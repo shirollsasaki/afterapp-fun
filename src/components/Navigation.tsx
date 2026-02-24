@@ -75,7 +75,7 @@ export default function Navigation() {
       </button>
 
       {/* Section dots */}
-      <div className="flex items-center gap-2.5">
+      <div className="flex items-center gap-4">
         {SECTIONS.map((section, index) => (
           <button
             type="button"
@@ -97,6 +97,12 @@ export default function Navigation() {
             </span>
           </button>
         ))}
+        <a
+          href="/blog"
+          className="font-typewriter text-[10px] uppercase tracking-wider text-muted transition-colors hover:text-ink"
+        >
+          Blog
+        </a>
       </div>
     </nav>
   );
