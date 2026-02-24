@@ -6,11 +6,20 @@ export const metadata: Metadata = {
   title: 'Blog — After App',
   description:
     'Articles on AI replacing apps, the BYOA paradigm, conversational AI, and the future of software in India.',
+  alternates: {
+    canonical: '/blog',
+  },
   openGraph: {
     title: 'Blog — After App',
     description:
       'Articles on AI replacing apps, the BYOA paradigm, and the future of software.',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Blog — After App',
+    description:
+      'Articles on AI replacing apps, the BYOA paradigm, and the future of software.',
   },
 };
 

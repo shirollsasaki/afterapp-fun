@@ -25,14 +25,27 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://afterapp.fun'),
   title: "The App is Dying — And AI is the Replacement",
   description:
     "32% of users have already replaced at least one app with AI. The single-purpose app era is ending. This is the thesis.",
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: "The App is Dying — And AI is the Replacement",
     description:
       "32% of users have already replaced at least one app with AI. The single-purpose app era is ending.",
     type: "article",
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "The App is Dying — And AI is the Replacement",
+    description:
+      "32% of users have already replaced at least one app with AI. The single-purpose app era is ending.",
+  },
+  verification: {
+    google: 'PLACEHOLDER_ADD_YOUR_GSC_TOKEN_HERE',
   },
 };
 
@@ -46,7 +59,33 @@ export default function RootLayout({
       lang="en"
       className={`${cormorant.variable} ${courierPrime.variable} ${dmSans.variable} scroll-smooth`}
     >
-      <body className={`${cormorant.className} antialiased`}>{children}</body>
+      <body className={`${cormorant.className} antialiased`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'After App',
+              url: 'https://afterapp.fun',
+              description: '32% of users have already replaced at least one app with AI. The single-purpose app era is ending.',
+            }).replace(/</g, '\u003c'),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'OpenClaw',
+              url: 'https://afterapp.fun',
+              sameAs: ['https://github.com/openclaw'],
+            }).replace(/</g, '\u003c'),
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionDivider from '@/components/ui/SectionDivider';
@@ -196,6 +197,13 @@ export default function CTASection() {
               >
                 View on GitHub
               </a>
+            </div>
+
+            {/* Blog link */}
+            <div className="mt-6">
+              <Link href="/blog" className="font-typewriter text-xs uppercase tracking-[0.15em] text-[var(--color-muted)] transition-colors hover:text-ink">
+                Read the blog →
+              </Link>
             </div>
 
             {/* Price */}

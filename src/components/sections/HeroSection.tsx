@@ -46,22 +46,24 @@ export default function HeroSection() {
       {/* Main content */}
       <div className="max-w-3xl text-center">
         {/* Headline */}
-        <motion.h1
-          className="text-7xl font-light leading-[0.95] tracking-tight text-ink sm:text-8xl lg:text-9xl"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-        >
-          The App
-        </motion.h1>
-        <motion.h1
-          className="text-7xl font-light italic leading-[0.95] tracking-tight text-ink sm:text-8xl lg:text-9xl"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.45 }}
-        >
-          is Dying.
-        </motion.h1>
+        <h1 className="text-7xl font-light leading-[0.95] tracking-tight text-ink sm:text-8xl lg:text-9xl">
+          <motion.span
+            className="block"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+          >
+            The App
+          </motion.span>
+          <motion.span
+            className="block italic"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.45 }}
+          >
+            is Dying.
+          </motion.span>
+        </h1>
 
         {/* Subline */}
         <motion.p

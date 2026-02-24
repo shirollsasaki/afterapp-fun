@@ -22,6 +22,14 @@ export async function generateMetadata({
   return {
     title: `${post.title} — After App`,
     description: post.description,
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.description,
+    },
     openGraph: {
       title: post.title,
       description: post.description,
@@ -44,6 +52,45 @@ export default async function BlogPost({
 
   return (
     <div className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: post.title,
+            description: post.description,
+            datePublished: post.date,
+            author: {
+              '@type': 'Person',
+              name: post.author,
+            },
+            publisher: {
+              '@type': 'Organization',
+              name: 'OpenClaw',
+              url: 'https://afterapp.fun',
+            },
+            mainEntityOfPage: {
+              '@type': 'WebPage',
+              '@id': `https://afterapp.fun/blog/${slug}`,
+            },
+          }).replace(/</g, '\u003c'),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://afterapp.fun' },
+              { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://afterapp.fun/blog' },
+              { '@type': 'ListItem', position: 3, name: post.title, item: `https://afterapp.fun/blog/${slug}` },
+            ],
+          }).replace(/</g, '\u003c'),
+        }}
+      />
       {/* Header */}
       <header className="border-b border-[var(--color-warm-gray)]/50 px-6 py-6">
         <nav className="mx-auto flex max-w-3xl items-center justify-between">
