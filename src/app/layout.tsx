@@ -45,7 +45,7 @@ export const metadata: Metadata = {
       "32% of users have already replaced at least one app with AI. The single-purpose app era is ending.",
   },
   verification: {
-    google: 'PLACEHOLDER_ADD_YOUR_GSC_TOKEN_HERE',
+    google: '7nyGH366Q-BKa2VP1gSVPcs4avJuXAPAWgaBkqVmEw4',
   },
 };
 
