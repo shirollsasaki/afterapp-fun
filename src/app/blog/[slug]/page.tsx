@@ -162,6 +162,35 @@ export default async function BlogPost({
 
         {/* Content */}
         <MarkdownRenderer content={post.content} />
+
+        {/* Related Reading */}
+        {post.relatedPosts.length > 0 && (
+          <section className="mt-16">
+            <div className="mb-10 flex items-center gap-4">
+              <div className="h-px flex-1 bg-[var(--color-warm-gray)]/50" />
+              <div className="h-1.5 w-1.5 rotate-45 border border-[var(--color-warm-gray)]" />
+              <div className="h-px flex-1 bg-[var(--color-warm-gray)]/50" />
+            </div>
+            <p className="mb-6 font-typewriter text-xs uppercase tracking-[0.15em] text-[var(--color-muted)]">
+              Related Reading
+            </p>
+            <div>
+              {post.relatedPosts.map((related, i) => (
+                <Link
+                  key={related.slug}
+                  href={`/blog/${related.slug}`}
+                  className={`block py-6 transition-opacity hover:opacity-70${i < post.relatedPosts.length - 1 ? ' border-b border-[var(--color-warm-gray)]/30' : ''}`}
+                >
+                  <p className="text-xl font-light text-[var(--color-ink)]">{related.title}</p>
+                  <p className="mt-1 line-clamp-2 text-sm italic text-[var(--color-muted)]">{related.description}</p>
+                  <p className="mt-3 font-typewriter text-xs text-[var(--color-muted)]">
+                    {new Date(related.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} · {related.readingTime} min read
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
       </article>
 
       {/* Footer nav */}

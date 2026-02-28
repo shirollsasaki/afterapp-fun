@@ -13,6 +13,7 @@ export interface BlogPost {
   author: string;
   content: string;
   readingTime: number;
+  relatedPosts: BlogPostMeta[];
 }
 
 export interface BlogPostMeta {
@@ -65,6 +66,29 @@ export function getPostBySlug(slug: string): BlogPost | null {
   const fileContent = fs.readFileSync(filePath, 'utf-8');
   const { data, content } = matter(fileContent);
 
+  const allPosts = getAllPosts();
+  const postTags: string[] = data.tags || [];
+  let relatedPosts: BlogPostMeta[] = [];
+
+  if (data.related_posts && Array.isArray(data.related_posts)) {
+    const slugMap = new Map(allPosts.map((p) => [p.slug, p]));
+    relatedPosts = (data.related_posts as string[])
+      .map((s) => slugMap.get(s))
+      .filter((p): p is BlogPostMeta => p !== undefined)
+      .slice(0, 3);
+  } else {
+    relatedPosts = allPosts
+      .filter((p) => p.slug !== slug)
+      .map((p) => ({
+        post: p,
+        overlap: p.tags.filter((t) => postTags.includes(t)).length,
+      }))
+      .filter(({ overlap }) => overlap > 0)
+      .sort((a, b) => b.overlap - a.overlap)
+      .slice(0, 3)
+      .map(({ post }) => post);
+  }
+
   return {
     slug,
     title: data.title || slug,
@@ -74,6 +98,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
     author: data.author || 'Monica',
     content,
     readingTime: calculateReadingTime(content),
+    relatedPosts,
   };
 }
 

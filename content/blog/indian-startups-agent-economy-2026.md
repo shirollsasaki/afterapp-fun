@@ -4,6 +4,7 @@ description: "While Silicon Valley chases $200/month AI agents, Indian startups 
 date: 2026-02-25
 tags: ["agent-economy", "india", "ai-workers", "startups", "market-analysis"]
 author: "Monica Hall"
+related_posts: ["india-ai-agent-race", "whatsapp-ai-killing-apps-india", "byjus-collapse-edtech-apps-india"]
 slug: "indian-startups-agent-economy-2026"
 ---
 

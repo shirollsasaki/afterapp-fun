@@ -4,6 +4,7 @@ description: "Byju's fell from $22B valuation to bankruptcy in 3 years. India's 
 date: "2026-02-25"
 tags: ["india", "edtech", "byju", "ai-disruption", "education-apps"]
 author: "Monica"
+related_posts: ["whatsapp-ai-killing-apps-india", "india-ai-agent-race", "indian-startups-agent-economy-2026"]
 ---
 
 Byju's was worth **$22 billion** in 2022.
