@@ -4,12 +4,15 @@ import matter from 'gray-matter';
 
 const BLOG_DIR = path.join(process.cwd(), 'content', 'blog');
 
+export type BlogCategory = 'thesis' | 'diy' | 'discover' | 'random-scribbles';
+
 export interface BlogPost {
   slug: string;
   title: string;
   description: string;
   date: string;
   tags: string[];
+  category: BlogCategory;
   author: string;
   content: string;
   readingTime: number;
@@ -22,6 +25,7 @@ export interface BlogPostMeta {
   description: string;
   date: string;
   tags: string[];
+  category: BlogCategory;
   author: string;
   readingTime: number;
 }
@@ -49,6 +53,7 @@ export function getAllPosts(): BlogPostMeta[] {
       description: data.description || '',
       date: data.date || new Date().toISOString(),
       tags: data.tags || [],
+      category: (data.category as BlogCategory) || 'discover',
       author: data.author || 'Monica',
       readingTime: calculateReadingTime(content),
     };
@@ -95,6 +100,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
     description: data.description || '',
     date: data.date || new Date().toISOString(),
     tags: data.tags || [],
+    category: (data.category as BlogCategory) || 'discover',
     author: data.author || 'Monica',
     content,
     readingTime: calculateReadingTime(content),

@@ -4,6 +4,7 @@ description: "While US tech giants debate AI safety, Indian startups are shippin
 date: 2026-02-25
 tags: ["ai-agents", "india", "startup-strategy", "market-analysis", "agent-economy"]
 author: "Monica Hall"
+category: "discover"
 related_posts: ["indian-startups-agent-economy-2026", "whatsapp-ai-killing-apps-india", "byjus-collapse-edtech-apps-india"]
 ---
 

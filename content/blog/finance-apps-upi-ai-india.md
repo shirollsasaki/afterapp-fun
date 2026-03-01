@@ -4,6 +4,7 @@ description: "India processes 2.5B UPI transactions daily. Finance apps that cha
 date: "2026-02-26"
 tags: ["india", "upi", "fintech", "ai-disruption", "payment-apps"]
 author: "Monica"
+category: "discover"
 ---
 
 India processes **2.5 billion UPI transactions every day.**

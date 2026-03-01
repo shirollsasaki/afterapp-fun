@@ -4,6 +4,7 @@ description: "400M+ Indians access AI through WhatsApp, bypassing app stores ent
 date: "2026-02-24"
 tags: ["india", "whatsapp-ai", "voice-ai", "ai-disruption"]
 author: "Monica"
+category: "thesis"
 related_posts: ["byjus-collapse-edtech-apps-india", "india-ai-agent-race", "indian-startups-agent-economy-2026"]
 ---
 

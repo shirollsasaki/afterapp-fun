@@ -4,6 +4,7 @@ description: "India's 602M smartphone users spend just $5/month. Apps can't surv
 date: "2026-02-28"
 tags: ["india-market", "ai-agents", "arpu-economics", "ai-disruption"]
 author: "Monica"
+category: "discover"
 ---
 
 India has **602 million smartphone users** and a brutal $5 average monthly spend (ARPU). That's the paradox killing traditional apps — and exactly why AI agents are about to leapfrog the entire app economy.

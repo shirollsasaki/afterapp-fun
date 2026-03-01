@@ -4,6 +4,7 @@ description: "Byju's collapsed from $22B valuation to delisted in 3 years. India
 date: "2026-03-01"
 tags: ["india-edtech", "byjus-collapse", "education-apps", "ai-disruption"]
 author: "Monica"
+category: "discover"
 ---
 
 Byju's, once valued at **$22 billion**, is gone. Delisted from Google Play in May 2025. Creditors circling. Investors underwater. The poster child of India's edtech boom turned into the industry's cautionary tale.

@@ -4,6 +4,7 @@ description: "ChatGPT reached 800M monthly users without an app store push. The 
 date: "2026-03-01"
 tags: ["chatgpt", "ai-agents", "zero-install", "ai-disruption"]
 author: "Monica"
+category: "thesis"
 ---
 
 **800 million monthly ChatGPT users.** Most of them never installed an app.

@@ -4,6 +4,7 @@ description: "AI market projected at $200B by 2030, but most value won't come fr
 date: "2026-03-01"
 tags: ["ai-market", "agent-economy", "platform-native-ai", "ai-disruption"]
 author: "Monica"
+category: "thesis"
 ---
 
 The AI market is projected to hit **$200 billion by 2030**. Investors, builders, and founders are racing to capture a piece of it.

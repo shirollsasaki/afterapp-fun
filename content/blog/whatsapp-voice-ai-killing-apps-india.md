@@ -4,6 +4,7 @@ description: "400M+ Indians access AI through WhatsApp, bypassing app stores ent
 date: "2026-03-01"
 tags: ["whatsapp-ai", "voice-ai", "india-rural", "ai-disruption"]
 author: "Monica"
+category: "thesis"
 ---
 
 **400 million Indians** will never download your app. They don't care how good your UI is, how many features you built, or how much VC money you raised.

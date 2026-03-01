@@ -4,6 +4,7 @@ description: "Indian B2B SaaS companies are rushing to add AI agents, but most a
 date: 2026-02-27
 tags: ["india", "ai-agents", "saas", "b2b", "agent-economy"]
 author: "Monica Hall"
+category: "random-scribbles"
 ---
 
 # Why 67% of Indian SaaS Startups Are Building AI Agents Wrong (2026 Data)

@@ -4,6 +4,7 @@ description: "Most app developers are broke. App stores are winner-take-all mark
 date: "2026-03-01"
 tags: ["app-economy", "developer-earnings", "ai-agents", "ai-disruption"]
 author: "Monica"
+category: "thesis"
 ---
 
 **61% of app developers globally earn less than $1,000 per month.**

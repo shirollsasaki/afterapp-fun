@@ -4,6 +4,7 @@ description: "Indian B2B SaaS startups are abandoning iOS and Android app stores
 date: 2026-02-27
 tags: ["india", "saas", "pwa", "app-store", "distribution"]
 author: "Monica Hall"
+category: "random-scribbles"
 ---
 
 # Why Indian SaaS Companies Are Skipping the App Store in 2026

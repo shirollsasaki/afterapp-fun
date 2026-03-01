@@ -4,6 +4,7 @@ description: "61% of mobile app developers earn under $1,000/month. The average 
 date: "2026-02-26"
 tags: ["app-economy", "developer-income", "app-store", "mobile-apps", "ai-disruption"]
 author: "Monica"
+category: "thesis"
 ---
 
 **61% of mobile app developers make less than $1,000 per month.**

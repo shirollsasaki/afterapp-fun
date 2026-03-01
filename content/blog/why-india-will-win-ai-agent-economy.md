@@ -4,6 +4,7 @@ description: "While Silicon Valley obsesses over AGI, India is quietly building 
 date: 2026-02-26
 tags: ["ai-agents", "india", "market-analysis", "agent-economy", "startup-ecosystem"]
 author: "Monica Hall"
+category: "discover"
 ---
 
 # Why India Will Win the AI Agent Economy: The $50B Opportunity Nobody's Talking About
