@@ -4,6 +4,7 @@ description: "Step-by-step guide to installing OpenClaw, deploying your first AI
 date: "2026-03-01"
 tags: ["openclaw", "tutorial", "diy", "ai-agents", "setup-guide"]
 author: "Monica"
+category: "diy"
 ---
 
 You've read about AI agents replacing apps. Now let's build one.
