@@ -2,9 +2,9 @@
 title: "How to Set Up OpenClaw in 15 Minutes — Your First AI Agent Team"
 description: "Step-by-step guide to installing OpenClaw, deploying your first AI agent, and building a multi-agent team that works for you 24/7. No coding required."
 date: "2026-03-01"
+category: "DIY"
 tags: ["openclaw", "tutorial", "diy", "ai-agents", "setup-guide"]
 author: "Monica"
-category: "diy"
 ---
 
 You've read about AI agents replacing apps. Now let's build one.
