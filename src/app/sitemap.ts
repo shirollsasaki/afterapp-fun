@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllSlugs } from "@/lib/blog";
+import { getAllApps } from "@/lib/apps";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://afterapp.fun";
@@ -10,6 +11,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.7,
+  }));
+
+  const apps = getAllApps();
+  const appEntries: MetadataRoute.Sitemap = apps.map((app) => ({
+    url: `${baseUrl}${app.url}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
   }));
 
   return [
@@ -25,6 +34,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "daily",
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/apps`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
     ...blogEntries,
+    ...appEntries,
   ];
 }
