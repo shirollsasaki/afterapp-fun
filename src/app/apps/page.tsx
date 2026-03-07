@@ -1,65 +1,93 @@
 import Link from 'next/link';
-import Taskbar from '@/components/Taskbar';
 import { getAllApps } from '@/lib/apps';
 import type { Metadata } from 'next';
 import type { AppStatus } from '@/lib/apps';
 
 export const metadata: Metadata = {
-  title: 'Apps — Pied Piper',
-  description: 'One app per week, built entirely by AI agents. No human developers.',
+  title: 'Apps — Afterapp Studios',
+  description: 'Pied Piper is our internal 7-agent deployment. This is what it has shipped.',
   alternates: { canonical: '/apps' },
 };
 
-const STATUS_ICON: Record<AppStatus, { icon: string; cls: string; label: string }> = {
-  'live':         { icon: '[LIVE]', cls: 'status-active',  label: '● LIVE'         },
-  'in-progress':  { icon: '[WIP]',  cls: 'status-standby', label: '● BUILDING'     },
-  'coming-soon':  { icon: '[SOON]', cls: 'status-soon',    label: '○ COMING SOON'  },
+const STATUS_LABEL: Record<AppStatus, string> = {
+  'live':        'Live',
+  'in-progress': 'Building',
+  'coming-soon': 'Soon',
 };
 
 export default function AppsPage() {
   const apps = getAllApps();
 
   return (
-    <div className="bsod-page">
-      <div className="page-window">
-        <div className="title-bar" style={{ cursor: 'default' }}>
-          <span>./APPS/DIRECTORY — Agent Output</span>
-          <div className="window-controls"><span>_</span><span>X</span></div>
-        </div>
-        <div className="window-content" style={{ maxHeight: 'none' }}>
-          <div className="cmd-line">
-            <span className="prompt">root@gilfoyle:~/apps$</span>
-            <span>ls -la ./deployed/</span>
-          </div>
-          <p style={{ color: '#aaaaff', marginBottom: 16 }}>
-            {apps.filter((a) => a.status === 'live').length} app(s) live · All hosted at afterapp.fun/[name]
-          </p>
+    <div className="pp-page">
+      <div className="pp-card">
+        <header className="pp-header">
+          <Link href="/" className="pp-logo">
+            <div className="pp-logo-mark" />
+            Afterapp Studios
+          </Link>
+          <nav className="pp-nav">
+            <Link href="/">Home</Link>
+            <Link href="/apps" className="active">Apps</Link>
+            <Link href="/blog">Blog</Link>
+          </nav>
+        </header>
 
-          {apps.length === 0 ? (
-            <p style={{ color: '#888' }}>&gt; First drop incoming...</p>
-          ) : (
-            <div className="file-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))' }}>
-              {apps.map((app) => {
-                const s = STATUS_ICON[app.status];
-                return (
-                  <Link key={app.slug} href={app.url} className="file-item">
-                    <span className="file-icon">{s.icon}</span>
-                    <span style={{ fontWeight: 'bold', color: '#E0E0E0' }}>{app.name}</span>
-                    <span className={s.cls} style={{ fontSize: 14 }}>{s.label}</span>
-                    <span style={{ color: '#aaaaff', fontSize: 14, lineHeight: 1.3 }}>{app.tagline}</span>
-                    {app.agents.length > 0 && (
-                      <span style={{ color: '#888', fontSize: 12 }}>
-                        by {app.agents.join(' · ')}
-                      </span>
-                    )}
-                  </Link>
-                );
-              })}
+        <div className="pp-split">
+          <div className="pp-left">
+            <div>
+              <div className="pp-eyebrow">Internal Deployment</div>
+              <h1>Pied Piper.<br />Our own<br />agent team.</h1>
+              <p>We eat our own cooking. Pied Piper is our internal deployment — 7 specialized agents finding product ideas, writing code, shipping features, and running marketing. Autonomously.</p>
+              <div className="pp-toc" style={{ marginTop: 24 }}>
+                <div className="pp-toc-item"><span className="pp-toc-num">01</span>Richard — Product strategy & decisions</div>
+                <div className="pp-toc-item"><span className="pp-toc-num">02</span>Monica — SEO content & blog</div>
+                <div className="pp-toc-item"><span className="pp-toc-num">03</span>Gilfoyle — Infrastructure & security</div>
+                <div className="pp-toc-item"><span className="pp-toc-num">04</span>Jared — Operations & customer success</div>
+                <div className="pp-toc-item"><span className="pp-toc-num">05</span>Erlich — Branding & marketing</div>
+                <div className="pp-toc-item"><span className="pp-toc-num">06</span>Dinesh · Big Head — Engineering</div>
+              </div>
             </div>
-          )}
+            <div style={{ paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.18)' }}>
+              <div style={{ fontSize: 40, fontWeight: 300, lineHeight: 1, color: 'var(--green)' }}>$37K</div>
+              <div style={{ fontSize: 12, opacity: 0.5, marginTop: 6 }}>Earned autonomously · no human sales</div>
+            </div>
+          </div>
+
+          <div className="pp-col-right">
+            {apps.length === 0 ? (
+              <div className="pp-list-row">
+                <span style={{ opacity: 0.4, fontSize: 14 }}>First drop incoming...</span>
+              </div>
+            ) : (
+              apps.map((app) => (
+                <Link key={app.slug} href={app.url} className="pp-list-row" style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                    <div style={{ fontSize: 20, fontWeight: 400, letterSpacing: '-0.01em' }}>{app.name}</div>
+                    <div style={{ fontSize: 12, opacity: 0.55, lineHeight: 1.4 }}>{app.tagline}</div>
+                    {app.agents.length > 0 && (
+                      <div style={{ fontSize: 10, opacity: 0.35, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                        {app.agents.join(' · ')}
+                      </div>
+                    )}
+                  </div>
+                  <span className={`pp-badge${app.status === 'live' ? ' live' : ''}`}>
+                    {STATUS_LABEL[app.status]}
+                  </span>
+                </Link>
+              ))
+            )}
+          </div>
         </div>
+
+        <footer className="pp-footer">
+          <span>Afterapp Studios · {apps.length} product{apps.length !== 1 ? 's' : ''} · {apps.filter(a => a.status === 'live').length} live</span>
+          <div className="pp-status">
+            <div className="pp-status-dot" />
+            <span>Shipping continuously</span>
+          </div>
+        </footer>
       </div>
-      <Taskbar />
     </div>
   );
 }

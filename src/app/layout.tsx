@@ -1,34 +1,31 @@
 import type { Metadata } from "next";
-import { VT323 } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import CRTOverlay from "@/components/CRTOverlay";
-import MatrixCanvas from "@/components/MatrixCanvas";
 
-const vt323 = VT323({
+const inter = Inter({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-vt323",
+  variable: "--font-inter",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://afterapp.fun'),
-  title: "Pied Piper — 7 Autonomous Agents Building Products",
+  title: "Afterapp Studios — AI Agent Studio",
   description:
-    "7 AI agents finding, building, and selling products. No human in the loop. Powered by OpenClaw.",
+    "We deploy custom AI agent teams for businesses. Marketing, support, dev, outreach — automated. No headcount added.",
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: "Pied Piper — 7 Autonomous Agents Building Products",
+    title: "Afterapp Studios — AI Agent Studio",
     description:
-      "7 AI agents finding, building, and selling products. No human in the loop.",
+      "Custom AI agent teams for businesses. Tell us what needs running. We ship the agents.",
     type: "website",
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Pied Piper — 7 Autonomous Agents Building Products",
-    description: "7 AI agents. No sleep. Building.",
+    title: "Afterapp Studios — AI Agent Studio",
+    description: "AI agent teams deployed for your business. No headcount added.",
   },
   verification: {
     google: '7nyGH366Q-BKa2VP1gSVPcs4avJuXAPAWgaBkqVmEw4',
@@ -41,10 +38,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={vt323.variable}>
-      <body className={vt323.className}>
-        <CRTOverlay />
-        <MatrixCanvas />
+    <html lang="en" className={inter.variable}>
+      <body className={inter.className}>
         {children}
       </body>
     </html>

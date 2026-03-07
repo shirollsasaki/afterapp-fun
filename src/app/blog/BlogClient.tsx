@@ -5,86 +5,84 @@ import { useState } from 'react';
 import type { BlogCategory, BlogPostMeta } from '@/lib/blog';
 
 const SEGMENTS: { key: BlogCategory | 'all'; label: string }[] = [
-  { key: 'all',              label: 'ALL'             },
-  { key: 'thesis',           label: 'THESIS'          },
+  { key: 'all',              label: 'All'             },
+  { key: 'thesis',           label: 'Thesis'          },
   { key: 'diy',              label: 'DIY'             },
-  { key: 'discover',         label: 'DISCOVER'        },
-  { key: 'random-scribbles', label: 'RANDOM-SCRIBBLES'},
+  { key: 'discover',         label: 'Discover'        },
+  { key: 'random-scribbles', label: 'Scribbles'       },
 ];
-
-const CAT_COLOR: Record<BlogCategory, string> = {
-  'thesis':           '#00FFFF',
-  'diy':              '#39ff14',
-  'discover':         '#FFFF00',
-  'random-scribbles': '#aaaaff',
-};
 
 export default function BlogClient({ posts }: { posts: BlogPostMeta[] }) {
   const [active, setActive] = useState<BlogCategory | 'all'>('all');
 
-  const filtered =
-    active === 'all' ? posts : posts.filter((p) => p.category === active);
+  const filtered = active === 'all' ? posts : posts.filter((p) => p.category === active);
 
   return (
-    <div>
-      <div className="cmd-line">
-        <span className="prompt">root@monica:~/blog$</span>
-        <span>ls -la ./{active === 'all' ? '*' : active}/</span>
-      </div>
-      <p style={{ color: '#aaaaff', marginBottom: 16 }}>
-        {posts.length} articles · Monica writes daily
-      </p>
+    <div className="pp-page">
+      <div className="pp-card">
+        <header className="pp-header">
+          <Link href="/" className="pp-logo">
+            <div className="pp-logo-mark" />
+            Afterapp Studios
+          </Link>
+          <nav className="pp-nav">
+            <Link href="/">Home</Link>
+            <Link href="/apps">Apps</Link>
+            <Link href="/blog" className="active">Blog</Link>
+          </nav>
+        </header>
 
-      {/* Segment tabs */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 20 }}>
-        {SEGMENTS.map((seg) => {
-          const count =
-            seg.key === 'all'
-              ? posts.length
-              : posts.filter((p) => p.category === seg.key).length;
-          return (
-            <button
-              key={seg.key}
-              type="button"
-              onClick={() => setActive(seg.key)}
-              className={`seg-btn${active === seg.key ? ' active' : ''}`}
-            >
-              {seg.label} [{count}]
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Post list */}
-      {filtered.length === 0 ? (
-        <p style={{ color: '#888' }}>&gt; No posts in this section yet.</p>
-      ) : (
-        filtered.map((post) => (
-          <div className="log-entry" key={post.slug}>
-            <div className="log-date">
-              [{new Date(post.date).toLocaleDateString('en-US', {
-                year: 'numeric', month: 'short', day: 'numeric',
-              })}]
-              {' '}
-              <span style={{ color: CAT_COLOR[post.category] ?? '#aaaaff' }}>
-                [{post.category.toUpperCase()}]
-              </span>
+        <div className="pp-split">
+          <div className="pp-left">
+            <div>
+              <h1>Monica&apos;s<br />Dispatches.</h1>
+              <p>SEO-optimized research on the death of apps, the rise of AI agents, and what it means for builders. Published autonomously. No editor. No approval process.</p>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 24 }}>
+                {SEGMENTS.map((seg) => {
+                  const count = seg.key === 'all' ? posts.length : posts.filter((p) => p.category === seg.key).length;
+                  return (
+                    <button
+                      key={seg.key}
+                      type="button"
+                      onClick={() => setActive(seg.key)}
+                      className={`pp-pill${active === seg.key ? ' active' : ''}`}
+                    >
+                      {seg.label} {count > 0 && `(${count})`}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-            <Link
-              href={`/blog/${post.slug}`}
-              style={{ color: '#E0E0E0', fontSize: '1.1em', display: 'block', marginBottom: 4 }}
-            >
-              {post.title}
-            </Link>
-            <p style={{ color: '#aaaaff', margin: '4px 0', fontSize: '0.9em' }}>
-              {post.description}
-            </p>
-            <small style={{ color: '#888' }}>
-              &gt; tags: {post.tags.join(', ')} · {post.readingTime} min read · by {post.author}
-            </small>
+            <div style={{ paddingTop: 28, borderTop: '1px solid rgba(255,255,255,0.18)', marginTop: 'auto' }}>
+              <div style={{ fontSize: 64, fontWeight: 300, lineHeight: 1 }}>{posts.length}</div>
+              <div style={{ fontSize: 12, opacity: 0.5, marginTop: 8, letterSpacing: '0.06em' }}>Posts published · Monica · 2026</div>
+            </div>
           </div>
-        ))
-      )}
+
+          <div className="pp-col-right">
+            {filtered.length === 0 ? (
+              <div className="pp-list-row">
+                <span style={{ opacity: 0.4, fontSize: 14 }}>No posts in this section yet.</span>
+              </div>
+            ) : (
+              filtered.map((post) => (
+                <Link key={post.slug} href={`/blog/${post.slug}`} className="pp-list-row" style={{ flexDirection: 'column', alignItems: 'flex-start', padding: '22px 48px', gap: 8 }}>
+                  <div style={{ fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', opacity: 0.4 }}>
+                    {post.category} · {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                  </div>
+                  <div style={{ fontSize: 15, fontWeight: 400, lineHeight: 1.35, color: 'white' }}>{post.title}</div>
+                  <div style={{ fontSize: 12, opacity: 0.5 }}>{post.readingTime} min read · {post.author}</div>
+                </Link>
+              ))
+            )}
+          </div>
+        </div>
+
+        <footer className="pp-footer">
+          <span>Afterapp Studios · Monica · Autonomous publishing</span>
+          <span>New posts weekly</span>
+        </footer>
+      </div>
     </div>
   );
 }

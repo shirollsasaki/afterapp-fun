@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation';
 import { getAllSlugs, getPostBySlug } from '@/lib/blog';
 import type { Metadata } from 'next';
 import { MarkdownRenderer } from './markdown';
-import Taskbar from '@/components/Taskbar';
 
 type Params = { slug: string };
 
@@ -21,7 +20,7 @@ export async function generateMetadata({
   if (!post) return {};
 
   return {
-    title: `${post.title} — Pied Piper`,
+    title: `${post.title} — Afterapp Studios`,
     description: post.description,
     alternates: { canonical: `/blog/${slug}` },
     twitter: {
@@ -50,7 +49,7 @@ export default async function BlogPost({
   if (!post) notFound();
 
   return (
-    <div className="bsod-page">
+    <div className="pp-page">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -61,7 +60,7 @@ export default async function BlogPost({
             description: post.description,
             datePublished: post.date,
             author: { '@type': 'Person', name: post.author },
-            publisher: { '@type': 'Organization', name: 'OpenClaw', url: 'https://afterapp.fun' },
+            publisher: { '@type': 'Organization', name: 'Afterapp Studios', url: 'https://afterapp.fun' },
             mainEntityOfPage: { '@type': 'WebPage', '@id': `https://afterapp.fun/blog/${slug}` },
           }).replace(/</g, '\u003c'),
         }}
@@ -81,64 +80,64 @@ export default async function BlogPost({
         }}
       />
 
-      <div className="page-window">
-        <div className="title-bar" style={{ cursor: 'default' }}>
-          <span>{post.title}.md</span>
-          <div className="window-controls"><span>_</span><span>X</span></div>
-        </div>
-        <div className="window-content" style={{ maxHeight: 'none' }}>
-          {/* Terminal header */}
-          <div className="cmd-line">
-            <span className="prompt">root@monica:~/blog$</span>
-            <span>cat &quot;{slug}.md&quot;</span>
-          </div>
-          <pre style={{ color: '#aaaaff', fontSize: 15, margin: '8px 0 16px', lineHeight: 1.6 }}>
-{`> title: ${post.title}
-> date: ${post.date}
-> author: ${post.author}
-> tags: ${post.tags.join(', ')}
-> reading_time: ${post.readingTime} min`}
-          </pre>
-          <div style={{ borderTop: '1px solid #E0E0E0', marginBottom: 16 }} />
+      <div className="pp-card" style={{ maxWidth: 1400, width: '100%' }}>
+        <header className="pp-header">
+          <Link href="/" className="pp-logo">
+            <div className="pp-logo-mark" />
+            Afterapp Studios
+          </Link>
+          <nav className="pp-nav">
+            <Link href="/blog">← Blog</Link>
+            <Link href="/apps">Apps</Link>
+          </nav>
+        </header>
 
-          {/* Content */}
-          <MarkdownRenderer content={post.content} />
-
-          {/* Related posts */}
-          {post.relatedPosts.length > 0 && (
-            <div style={{ marginTop: 32 }}>
-              <div style={{ borderTop: '1px solid #E0E0E0', marginBottom: 16 }} />
-              <p style={{ color: '#FFFF00', fontWeight: 'bold', marginBottom: 12 }}>
-                RELATED_READING.txt
-              </p>
-              {post.relatedPosts.map((r) => (
-                <div className="log-entry" key={r.slug}>
-                  <Link href={`/blog/${r.slug}`} style={{ color: '#E0E0E0' }}>
-                    {r.title}
-                  </Link>
-                  <p style={{ color: '#888', fontSize: 15 }}>{r.description}</p>
-                  <small style={{ color: '#666' }}>
-                    {new Date(r.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                    {' · '}{r.readingTime} min read
-                  </small>
+        <div style={{ display: 'grid', gridTemplateColumns: '38% 62%', flex: 1, minHeight: 0, overflow: 'hidden' }}>
+          <div className="pp-left" style={{ justifyContent: 'space-between' }}>
+            <div>
+              <div className="pp-eyebrow">{post.category} · {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
+              <h1 style={{ fontSize: 32, lineHeight: 1.2, marginBottom: 16 }}>{post.title}</h1>
+              <p style={{ fontSize: 14 }}>{post.description}</p>
+            </div>
+            <div style={{ paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.18)', display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {[
+                { label: 'Author', value: post.author },
+                { label: 'Category', value: post.category },
+                { label: 'Reading time', value: `${post.readingTime} min` },
+                { label: 'Published', value: new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) },
+              ].map(({ label, value }) => (
+                <div key={label} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12 }}>
+                  <span style={{ opacity: 0.4 }}>{label}</span>
+                  <span style={{ opacity: 0.8 }}>{value}</span>
                 </div>
               ))}
             </div>
-          )}
+          </div>
 
-          {/* Back nav */}
-          <div style={{ marginTop: 24, borderTop: '1px solid #333', paddingTop: 12 }}>
-            <div className="cmd-line">
-              <span className="prompt">root@monica:~/blog$</span>
-              <span>cd ..</span>
+          <div style={{ padding: '56px 60px', borderLeft: '1px solid rgba(255,255,255,0.18)', overflowY: 'auto', minHeight: 0 }}>
+            <div className="pp-prose">
+              <MarkdownRenderer content={post.content} />
             </div>
-            <Link href="/blog" style={{ color: '#aaaaff' }}>
-              &gt; Back to /blog
-            </Link>
+
+            {post.relatedPosts.length > 0 && (
+              <div style={{ marginTop: 40, paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.18)' }}>
+                <div style={{ fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', opacity: 0.4, marginBottom: 20 }}>Related Reading</div>
+                {post.relatedPosts.map((r) => (
+                  <Link key={r.slug} href={`/blog/${r.slug}`} style={{ display: 'block', padding: '14px 0', borderBottom: '1px solid rgba(255,255,255,0.1)', color: 'white', textDecoration: 'none' }}>
+                    <div style={{ fontSize: 14, marginBottom: 4 }}>{r.title}</div>
+                    <div style={{ fontSize: 11, opacity: 0.4 }}>{new Date(r.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} · {r.readingTime} min read</div>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         </div>
+
+        <footer className="pp-footer">
+          <span>Afterapp Studios · Blog · Monica</span>
+          <Link href="/blog" style={{ color: 'white', opacity: 0.5, fontSize: 12 }}>← Back to all posts</Link>
+        </footer>
       </div>
-      <Taskbar />
     </div>
   );
 }
