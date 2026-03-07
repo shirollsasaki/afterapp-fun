@@ -93,7 +93,7 @@ export default async function BlogPost({
           </nav>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '38% 62%', flex: 1, minHeight: 0, overflow: 'hidden' }}>
+        <div className="pp-post-split">
           <div className="pp-left" style={{ justifyContent: 'space-between' }}>
             <div>
               <div className="pp-eyebrow">{post.category} · {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
@@ -115,7 +115,7 @@ export default async function BlogPost({
             </div>
           </div>
 
-          <div style={{ padding: '56px 60px', borderLeft: '1px solid rgba(255,255,255,0.18)', overflowY: 'auto', minHeight: 0 }}>
+          <div className="pp-post-body">
             <div className="pp-prose">
               <MarkdownRenderer content={post.content} />
             </div>
