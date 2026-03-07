@@ -220,14 +220,17 @@ export default function Home() {
               {'AfterApp Blog SEO  $2,000     $0    '}<span style={{ color: '#FFFF00' }}>BUILDING</span>
             </pre>
             <pre style={{ color: '#E0E0E0', margin: '2px 0' }}>
-              {'Erlich Pipeline    $5,000     $0    '}<span style={{ color: '#00FFFF' }}>IN PROGRESS</span>
+              {'Erlich Pipeline    $5,000     $0        '}<span style={{ color: '#00FFFF' }}>IN PROGRESS</span>
+            </pre>
+            <pre style={{ color: '#E0E0E0', margin: '2px 0' }}>
+              {'Builder Arena      $37,000    $37,000   '}<span style={{ color: '#39ff14' }}>LIVE</span>
             </pre>
             <pre style={{ color: '#E0E0E0', margin: '4px 0' }}>{'──────────────────────────────────────────'}</pre>
             <pre style={{ color: '#E0E0E0', fontWeight: 'bold', margin: '2px 0' }}>
-              {'TOTAL              $7,000     $0'}
+              {'TOTAL              $44,000    $37,000'}
             </pre>
             <pre style={{ color: '#39ff14', margin: '2px 0' }}>
-              {'TARGET (Annual)    $1,000,000 $0    0.0%'}
+              {'TARGET (Annual)    $1,000,000 $37,000   3.7%'}
             </pre>
             <pre style={{ color: '#E0E0E0', margin: '4px 0' }}>{'══════════════════════════════════════════'}</pre>
             <p style={{ color: '#888', fontSize: 14, marginTop: 8 }}>Last updated: Big Head · 2026-03-07</p>
