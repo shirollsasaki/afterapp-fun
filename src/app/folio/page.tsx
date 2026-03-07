@@ -26,6 +26,7 @@ export default function FolioPage() {
           </Link>
           <nav className="pp-nav">
             <Link href="/">Home</Link>
+            <Link href="/thesis">Thesis</Link>
             <Link href="/apps">Apps</Link>
             <Link href="/blog">Blog</Link>
           </nav>

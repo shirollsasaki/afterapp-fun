@@ -88,6 +88,7 @@ export default async function BlogPost({
           </Link>
           <nav className="pp-nav">
             <Link href="/blog">← Blog</Link>
+            <Link href="/thesis">Thesis</Link>
             <Link href="/apps">Apps</Link>
           </nav>
         </header>

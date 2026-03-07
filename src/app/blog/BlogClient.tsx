@@ -27,6 +27,7 @@ export default function BlogClient({ posts }: { posts: BlogPostMeta[] }) {
           </Link>
           <nav className="pp-nav">
             <Link href="/">Home</Link>
+            <Link href="/thesis">Thesis</Link>
             <Link href="/apps">Apps</Link>
             <Link href="/blog" className="active">Blog</Link>
           </nav>

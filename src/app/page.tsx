@@ -45,6 +45,7 @@ export default function Home() {
           </Link>
           <nav className="pp-nav">
             <Link href="/" className="active">Home</Link>
+            <Link href="/thesis">Thesis</Link>
             <Link href="/apps">Apps</Link>
             <Link href="/blog">Blog</Link>
           </nav>
