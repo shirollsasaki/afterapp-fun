@@ -1,134 +1,65 @@
 import Link from 'next/link';
-import Navigation from '@/components/Navigation';
+import Taskbar from '@/components/Taskbar';
 import { getAllApps } from '@/lib/apps';
 import type { Metadata } from 'next';
 import type { AppStatus } from '@/lib/apps';
 
 export const metadata: Metadata = {
-  title: 'Apps — After App',
+  title: 'Apps — Pied Piper',
   description: 'One app per week, built entirely by AI agents. No human developers.',
   alternates: { canonical: '/apps' },
 };
 
-const STATUS_CONFIG: Record<AppStatus, { label: string; dot: string }> = {
-  'live':         { label: 'Live',         dot: 'bg-[var(--color-ink)]' },
-  'in-progress':  { label: 'Building',     dot: 'bg-[var(--color-warm-gray)] animate-pulse' },
-  'coming-soon':  { label: 'Coming soon',  dot: 'bg-[var(--color-warm-gray)]/50' },
+const STATUS_ICON: Record<AppStatus, { icon: string; cls: string; label: string }> = {
+  'live':         { icon: '[LIVE]', cls: 'status-active',  label: '● LIVE'         },
+  'in-progress':  { icon: '[WIP]',  cls: 'status-standby', label: '● BUILDING'     },
+  'coming-soon':  { icon: '[SOON]', cls: 'status-soon',    label: '○ COMING SOON'  },
 };
 
 export default function AppsPage() {
   const apps = getAllApps();
 
   return (
-    <div className="min-h-screen">
-      <Navigation />
-
-      <main className="mx-auto max-w-4xl px-6 pb-24 pt-32">
-        <div className="mb-2 flex items-center gap-3">
-          <span className="font-typewriter text-xs uppercase tracking-[0.2em] text-[var(--color-muted)]">
-            Agent Output
-          </span>
-          <span className="font-typewriter text-xs text-[var(--color-warm-gray)]">·</span>
-          <span className="font-typewriter text-xs uppercase tracking-[0.15em] text-[var(--color-muted)]">
-            {apps.filter((a) => a.status === 'live').length} live
-          </span>
+    <div className="bsod-page">
+      <div className="page-window">
+        <div className="title-bar" style={{ cursor: 'default' }}>
+          <span>./APPS/DIRECTORY — Agent Output</span>
+          <div className="window-controls"><span>_</span><span>X</span></div>
         </div>
-
-        <h1 className="text-5xl font-light leading-[0.95] text-[var(--color-ink)] lg:text-6xl">
-          One app a week,<span className="italic"> by agents.</span>
-        </h1>
-        <p className="mt-4 max-w-lg text-lg leading-relaxed text-[var(--color-muted)]">
-          Every app on this page was designed, written, and shipped by our AI agent team.
-          No human developers. All hosted here.
-        </p>
-
-        <div className="my-12 flex items-center gap-4">
-          <div className="h-px flex-1 bg-[var(--color-warm-gray)]/30" />
-          <div className="h-1.5 w-1.5 rotate-45 border border-[var(--color-warm-gray)]/50" />
-          <div className="h-px flex-1 bg-[var(--color-warm-gray)]/30" />
-        </div>
-
-        {apps.length === 0 ? (
-          <div className="py-24 text-center">
-            <p className="font-typewriter text-sm text-[var(--color-muted)]">
-              First drop incoming.
-            </p>
+        <div className="window-content" style={{ maxHeight: 'none' }}>
+          <div className="cmd-line">
+            <span className="prompt">root@gilfoyle:~/apps$</span>
+            <span>ls -la ./deployed/</span>
           </div>
-        ) : (
-          <div className="space-y-0">
-            {apps.map((app, idx) => {
-              const statusCfg = STATUS_CONFIG[app.status];
-              return (
-                <div key={app.slug}>
-                  {idx > 0 && <div className="h-px bg-[var(--color-warm-gray)]/15" />}
-                  <Link href={app.url} className="group block py-10">
-                    <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-                      <div className="flex-1">
-                        <div className="mb-4 flex flex-wrap items-center gap-3">
-                          <span className="flex items-center gap-1.5">
-                            <span className={`h-1.5 w-1.5 rounded-full ${statusCfg.dot}`} />
-                            <span className="font-typewriter text-[10px] uppercase tracking-wider text-[var(--color-muted)]">
-                              {statusCfg.label}
-                            </span>
-                          </span>
-                          {app.launchedDate && (
-                            <>
-                              <span className="text-[var(--color-warm-gray)]/50">·</span>
-                              <time className="font-typewriter text-[10px] uppercase tracking-wider text-[var(--color-muted)]">
-                                {new Date(app.launchedDate).toLocaleDateString('en-US', {
-                                  month: 'short', day: 'numeric', year: 'numeric',
-                                })}
-                              </time>
-                            </>
-                          )}
-                        </div>
-
-                        <h2 className="text-3xl font-light text-[var(--color-ink)] transition-opacity group-hover:opacity-70 lg:text-4xl">
-                          {app.name}
-                        </h2>
-                        <p className="mt-2 text-lg italic text-[var(--color-muted)]">
-                          {app.tagline}
-                        </p>
-                        <p className="mt-3 max-w-xl text-sm leading-relaxed text-[var(--color-muted)]/70">
-                          {app.description}
-                        </p>
-
-                        {app.agents.length > 0 && (
-                          <div className="mt-5 flex flex-wrap items-center gap-2">
-                            <span className="font-typewriter text-[10px] uppercase tracking-wider text-[var(--color-warm-gray)]/60">
-                              Built by
-                            </span>
-                            {app.agents.map((agent) => (
-                              <span
-                                key={agent}
-                                className="font-typewriter rounded-sm border border-[var(--color-warm-gray)]/20 px-2 py-0.5 text-[10px] uppercase tracking-wider text-[var(--color-muted)]"
-                              >
-                                {agent}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="flex items-center lg:pt-2">
-                        <span className="font-typewriter text-xs text-[var(--color-muted)] transition-all group-hover:text-[var(--color-ink)]">
-                          Open →
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
-        )}
-
-        <div className="mt-16 border-t border-[var(--color-warm-gray)]/20 pt-10">
-          <p className="font-typewriter text-xs text-[var(--color-warm-gray)]/50">
-            All apps hosted at afterapp.fun/[name]
+          <p style={{ color: '#aaaaff', marginBottom: 16 }}>
+            {apps.filter((a) => a.status === 'live').length} app(s) live · All hosted at afterapp.fun/[name]
           </p>
+
+          {apps.length === 0 ? (
+            <p style={{ color: '#888' }}>&gt; First drop incoming...</p>
+          ) : (
+            <div className="file-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))' }}>
+              {apps.map((app) => {
+                const s = STATUS_ICON[app.status];
+                return (
+                  <Link key={app.slug} href={app.url} className="file-item">
+                    <span className="file-icon">{s.icon}</span>
+                    <span style={{ fontWeight: 'bold', color: '#E0E0E0' }}>{app.name}</span>
+                    <span className={s.cls} style={{ fontSize: 14 }}>{s.label}</span>
+                    <span style={{ color: '#aaaaff', fontSize: 14, lineHeight: 1.3 }}>{app.tagline}</span>
+                    {app.agents.length > 0 && (
+                      <span style={{ color: '#888', fontSize: 12 }}>
+                        by {app.agents.join(' · ')}
+                      </span>
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
+          )}
         </div>
-      </main>
+      </div>
+      <Taskbar />
     </div>
   );
 }
