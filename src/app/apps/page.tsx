@@ -28,6 +28,14 @@ export default function AppsPage() {
           </Link>
           <nav className="pp-nav">
             <Link href="/">Home</Link>
+            <div className="pp-nav-group">
+              <span className="pp-nav-trigger">Studio</span>
+              <div className="pp-nav-dropdown">
+                <a href="/#agents">Agents</a>
+                <a href="/#pricing">Pricing</a>
+                <a href="/#case-studies">Case Studies</a>
+              </div>
+            </div>
             <Link href="/thesis">Thesis</Link>
             <Link href="/apps" className="active">Apps</Link>
             <Link href="/blog">Blog</Link>

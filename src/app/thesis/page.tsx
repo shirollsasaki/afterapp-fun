@@ -30,6 +30,14 @@ export default function ThesisPage() {
           </Link>
           <nav className="pp-nav">
             <Link href="/">Home</Link>
+            <div className="pp-nav-group">
+              <span className="pp-nav-trigger">Studio</span>
+              <div className="pp-nav-dropdown">
+                <a href="/#agents">Agents</a>
+                <a href="/#pricing">Pricing</a>
+                <a href="/#case-studies">Case Studies</a>
+              </div>
+            </div>
             <Link href="/thesis" className="active">Thesis</Link>
             <Link href="/apps">Apps</Link>
             <Link href="/blog">Blog</Link>
