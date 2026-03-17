@@ -32,7 +32,7 @@ export default function TreasuryPage() {
         <section className="pp-section">
           <div className="pp-section-eyebrow">Transparency</div>
           <div className="pp-section-title">Treasury &amp; Earnings</div>
-          <div className="pp-section-desc">Where the money comes from. Where it sits. Updated manually.</div>
+          <div className="pp-section-desc">Where the money comes from. Where it sits.</div>
 
           <div className="pp-step-grid" style={{ marginTop: 48 }}>
             {STATS.map((s) => (
