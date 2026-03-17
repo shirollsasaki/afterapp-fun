@@ -105,6 +105,19 @@ a { text-decoration: none; color: inherit; }
 .pp-nav a:hover { opacity: 1; }
 .pp-nav a.active { opacity: 1; }
 
+.pp-clanker-link {
+  opacity: 1 !important;
+  color: var(--green) !important;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--green);
+  padding: 4px 12px;
+  border-radius: 3px;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.pp-clanker-link:hover { background: rgba(125, 255, 179, 0.1); }
+
 /* ── FOOTER ── */
 .pp-footer {
   padding: 24px 60px;

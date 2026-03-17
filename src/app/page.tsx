@@ -129,6 +129,7 @@ export default function Home() {
             <Link href="/thesis">Thesis</Link>
             <Link href="/apps">Apps</Link>
             <Link href="/blog">Blog</Link>
+            <a href="https://clanker.world/clanker/0xbF003846Da231Cc2b745E58eeC43e024C2528b07" target="_blank" rel="noopener noreferrer" className="pp-clanker-link">Live on Clanker</a>
           </nav>
         </header>
 
