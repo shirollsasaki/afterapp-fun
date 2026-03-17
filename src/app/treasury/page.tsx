@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 const STATS = [
   { label: 'Treasury', value: '$39,800', sub: 'USD' },
   { label: 'Agent Earnings', value: '$37,200', sub: 'From services' },
-  { label: 'Token Holdings', value: '30%', sub: 'Of total supply' },
+  { label: 'Token Holdings', value: '30%', sub: 'Of total supply · Locked till 03/25/2026' },
 ];
 
 export default function TreasuryPage() {
